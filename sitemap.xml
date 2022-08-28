@@ -2,67 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/11ty-starter/posts/en/first/</loc>
-    <lastmod>2022-01-01</lastmod>
+    <loc>/personal-site/posts/en/first/</loc>
+    <lastmod>2022-08-27</lastmod>
   </url>
   
   <url>
-    <loc>/11ty-starter/posts/en/second/</loc>
-    <lastmod>2022-01-02</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/posts/en/third/</loc>
-    <lastmod>2022-01-03</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/posts/en/fourth/</loc>
-    <lastmod>2022-01-04</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/posts/en/fifth/</loc>
-    <lastmod>2022-01-05</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/about/</loc>
+    <loc>/personal-site/about/</loc>
     <lastmod>2022-08-28</lastmod>
   </url>
   
   <url>
-    <loc>/11ty-starter/posts/</loc>
+    <loc>/personal-site/posts/</loc>
     <lastmod>2022-08-28</lastmod>
   </url>
   
   <url>
-    <loc>/11ty-starter/</loc>
+    <loc>/personal-site/</loc>
     <lastmod>2022-08-28</lastmod>
   </url>
   
   <url>
-    <loc>/11ty-starter/tags/</loc>
+    <loc>/personal-site/tags/</loc>
     <lastmod>2022-08-28</lastmod>
   </url>
   
   <url>
-    <loc>/11ty-starter/tags/last-one/</loc>
-    <lastmod>2022-08-28</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/tags/style/</loc>
-    <lastmod>2022-08-28</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/tags/another-one/</loc>
-    <lastmod>2022-08-28</lastmod>
-  </url>
-  
-  <url>
-    <loc>/11ty-starter/tags/tag/</loc>
+    <loc>/personal-site/tags/musings/</loc>
     <lastmod>2022-08-28</lastmod>
   </url>
 </urlset>
