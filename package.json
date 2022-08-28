@@ -1,7 +1,7 @@
 {
-    "name": "11ty-starter",
+    "name": "personal-site",
     "version": "0.0.1",
-    "description": "eleventy starter",
+    "description": "GLo's site",
     "scripts": {
         "clean": "rm -rf _site",
         "hasher": "node csshash.js",
@@ -9,7 +9,7 @@
         "build": "npm-run-all clean hasher -p build:eleventy build:sass build:rollup",
         "build:github": "npm-run-all clean hasher -p build:eleventy:pathPrefix build:sass build:rollup",
         "build:eleventy": "ELEVENTY_ENV=production eleventy",
-        "build:eleventy:pathPrefix": "ELEVENTY_ENV=production eleventy --pathprefix=11ty-starter",
+        "build:eleventy:pathPrefix": "ELEVENTY_ENV=production eleventy --pathprefix=personal-site",
         "build:sass": "sass src/assets/css/index.scss _site/assets/css/index.css && npm run cssmin",
         "build:rollup": "NODE_ENV=production rollup -c",
         "dev": "npm-run-all clean hasher -p dev:*",
@@ -20,12 +20,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/moody-person/11ty-starter"
+        "url": "https://github.com/georgialoper/personal-site"
     },
     "author": {
-        "name": "Andrey Parfenov",
-        "email": "asleeppiano@outlook.com",
-        "url": "https://andreyparfenov.com"
+        "name": "Georgia Loper",
+        "email": "loper.georgia@gmail.com",
+        "url": "https://developerloper.dev"
     },
     "license": "MIT",
     "devDependencies": {

@@ -3,8 +3,8 @@ layout: layouts/about.njk
 permalink: /about/
 eleventyNavigation:
     key: about
-    title: about
+    title: About
     order: 2
 ---
 
-TODO: write about yourself.
+Georgia Loper loves the web. She champions frontend excellence at Upstart by empowering teams to engineer quality user experiences with Patina Design System.

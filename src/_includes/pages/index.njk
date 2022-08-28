@@ -1,12 +1,4 @@
 <div class="p-index">
-    <section class="p-index_hero">
-        <h1>
-            {{ main[locale].welcome }}
-        </h1>
-        <p>
-            {{ main[locale].siteDescription | safe }}
-        </p>
-    </section>
     <section class="p-index_latest">
         <h2 class="u-mb--16">
             {% set maxPosts = collections.posts.length | min(3) %}

@@ -34,8 +34,8 @@
 
     --color-warning: hsl(37, 79%, 60%);
 
-    --main-gradient:        linear-gradient(to right, #dd33b3, #1ca6b5);
-    --main-gradient-inv:    linear-gradient(to right, #1ca6b5, #dd33b3);
+    --main-gradient:        linear-gradient(to right, #006D69, #00B1AC);
+    --main-gradient-inv:    linear-gradient(to right, #00B1AC, #006D69);
 }
 
 .s-light-theme {
@@ -44,5 +44,5 @@
     --color-dark:   hsla(0, 0%, 20%, 1);
     --color-bg:     hsla(0, 0%, 66%, 1);
     --color-accent: hsla(165, 56%, 83%,1);
-    --color-extra:  hsl(315, 71%, 53%);
+    --color-extra:  hsla(178, 100%, 35%, 1);
 }
