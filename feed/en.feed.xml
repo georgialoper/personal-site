@@ -105,7 +105,9 @@
 &lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;We did it 🎉&lt;/p&gt;
 &lt;p&gt;New releases should now trigger a post to your slack channel containing the current version and release notes.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://developerloper.dev/static/images/semantic-release-slackbot/screenshot-success.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;br /&gt;
+    &lt;img src=&quot;https://developerloper.dev/static/images/semantic-release-slackbot/screenshot-success.png&quot; alt=&quot;a screenshot of an example semantic release slack message&quot; /&gt;
+&lt;br /&gt;
 </content>
 	</entry>
 	
