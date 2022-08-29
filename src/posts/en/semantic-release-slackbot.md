@@ -146,4 +146,6 @@ We did it 🎉
 
 New releases should now trigger a post to your slack channel containing the current version and release notes.
 
-![](/static/images/semantic-release-slackbot/screenshot-success.png)
+<br/>
+    <img src="/static/images/semantic-release-slackbot/screenshot-success.png" alt="a screenshot of an example semantic release slack message" />
+<br/>
