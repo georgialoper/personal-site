@@ -2,32 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/personal-site/posts/en/first/</loc>
+    <loc>/personal-site/posts/en/doing-over-dreaming/</loc>
     <lastmod>2022-08-27</lastmod>
   </url>
   
   <url>
+    <loc>/personal-site/posts/en/semantic-release-slackbot/</loc>
+    <lastmod>2022-08-29</lastmod>
+  </url>
+  
+  <url>
     <loc>/personal-site/about/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-08-29</lastmod>
   </url>
   
   <url>
     <loc>/personal-site/posts/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-08-29</lastmod>
   </url>
   
   <url>
     <loc>/personal-site/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-08-29</lastmod>
   </url>
   
   <url>
     <loc>/personal-site/tags/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-08-29</lastmod>
   </url>
   
   <url>
     <loc>/personal-site/tags/musings/</loc>
-    <lastmod>2022-08-28</lastmod>
+    <lastmod>2022-08-29</lastmod>
+  </url>
+  
+  <url>
+    <loc>/personal-site/tags/libraries/</loc>
+    <lastmod>2022-08-29</lastmod>
+  </url>
+  
+  <url>
+    <loc>/personal-site/tags/semantic-release/</loc>
+    <lastmod>2022-08-29</lastmod>
   </url>
 </urlset>

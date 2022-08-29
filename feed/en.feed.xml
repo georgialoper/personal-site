@@ -5,7 +5,7 @@
 	
 	<link href="https://developerloper.dev/personal-site/feed/en.feed.xml" rel="self"/>
 	<link href="https://developerloper.dev"/>
-	<updated>2022-08-27T00:00:00Z</updated>
+	<updated>2022-08-29T00:00:00Z</updated>
 	<id>developerloper.dev</id>
 	<author>
 		<name>GLo</name>
@@ -13,10 +13,107 @@
 	</author>
 	
 	<entry>
+		<title>Automate release notifications with semantic-release-slack-bot</title>
+		<link href="https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/"/>
+		<updated>2022-08-29T00:00:00Z</updated>
+		<id>https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/</id>
+		<content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/semantic-release/semantic-release&quot;&gt;Semantic release&lt;/a&gt; is an well-documented, easy to use, library for automated version management and package publishing. It automates the whole package release workflow including: determining the next version number, generating the release notes, and publishing the package.&lt;/p&gt;
+&lt;p&gt;Each release step is implemented by configurable &lt;a href=&quot;https://github.com/semantic-release/semantic-release/blob/master/docs/usage/plugins.md&quot;&gt;plugins&lt;/a&gt;. This allows for support of different commit message formats, release note generators and publishing platforms.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Of particular interest is the &lt;a href=&quot;https://github.com/juliuscc/semantic-release-slack-bot&quot;&gt;semantic-release-slack-bot&lt;/a&gt; plugin, which automates posting release notifications to a slack channel from a slack bot.&lt;/p&gt;
+&lt;p&gt;Setting this up is super easy, but comes with some gotchas.&lt;/p&gt;
+&lt;h2 id=&quot;add-the-plugin-to-your-project&quot; tabindex=&quot;-1&quot;&gt;Add the plugin to your project &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#add-the-plugin-to-your-project&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;$ yarn add -D semantic-release-slack-bot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;configure-the-plugin-in-your-semantic-release-configuration-file&quot; tabindex=&quot;-1&quot;&gt;Configure the plugin in your semantic-release configuration file &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#configure-the-plugin-in-your-semantic-release-configuration-file&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you’ve just been using your &lt;code&gt;package.json&lt;/code&gt; file to configure semantic release, you’ll want to create a &lt;code&gt;.releaserc&lt;/code&gt; &lt;a href=&quot;https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#configuration&quot;&gt;configuration file&lt;/a&gt; at this point.&lt;/p&gt;
+&lt;p&gt;This file can be written in YAML or JSON, with optional extensions: &lt;code&gt;.yaml&lt;/code&gt;, &lt;code&gt;.yml&lt;/code&gt;, &lt;code&gt;.json&lt;/code&gt;, &lt;code&gt;.js&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I prefer &lt;code&gt;.js&lt;/code&gt; to resemble to &lt;code&gt;.json&lt;/code&gt; format most semantic-release documentation uses while allow comments.&lt;/p&gt;
+&lt;h3 id=&quot;re-configure-the-default-semantic-release-steps&quot; tabindex=&quot;-1&quot;&gt;Re-configure the default semantic-release steps &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#re-configure-the-default-semantic-release-steps&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Skip this step if you already have a semantic release configuration file set up.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// .releaserc.js&lt;/span&gt;&lt;br /&gt;module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// your release branch configuration&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token comment&quot;&gt;/**&lt;br /&gt;         * These four plugins are already part of semantic-release and are listed in order of execution. They do not have to be installed separately:&lt;br /&gt;         *&lt;br /&gt;         * @see: https://semantic-release.gitbook.io/semantic-release/usage/plugins#default-plugins&lt;br /&gt;         */&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;@semantic-release/commit-analyzer&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;@semantic-release/release-notes-generator&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;@semantic-release/npm&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;@semantic-release/github&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;configure-the-semantic-release-slack-bot-plugin&quot; tabindex=&quot;-1&quot;&gt;Configure the semantic-release-slack-bot plugin &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#configure-the-semantic-release-slack-bot-plugin&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I only wanted notifications for successful relases on my &lt;code&gt;main&lt;/code&gt; branch.&lt;/p&gt;
+&lt;p&gt;View all the plugin’s &lt;a href=&quot;https://github.com/juliuscc/semantic-release-slack-bot#options&quot;&gt;options&lt;/a&gt; to fine-tune your configuration.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// .releaserc.js&lt;/span&gt;&lt;br /&gt;module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// default plugins&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token comment&quot;&gt;/**&lt;br /&gt;         * Plugin to get release notifications on slack from a slack bot&lt;br /&gt;         *&lt;br /&gt;         * @see: https://github.com/juliuscc/semantic-release-slack-bot&lt;br /&gt;         */&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;semantic-release-slack-bot&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token literal-property property&quot;&gt;branchesConfig&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;                &lt;span class=&quot;token literal-property property&quot;&gt;pattern&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;main&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;                &lt;span class=&quot;token literal-property property&quot;&gt;notifyOnSuccess&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;                &lt;span class=&quot;token literal-property property&quot;&gt;notifyOnFail&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;add-the-semantic-release-slack-app-to-your-slack-workspace.&quot; tabindex=&quot;-1&quot;&gt;Add the semantic-release slack app to your slack workspace. &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#add-the-semantic-release-slack-app-to-your-slack-workspace.&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Follow &lt;a href=&quot;https://slack.com/oauth/authorize?client_id=605439709265.611687593109&amp;amp;scope=incoming-webhook&quot;&gt;this link&lt;/a&gt;. This may require approval by your workspace admin.&lt;/p&gt;
+&lt;p&gt;Once the app is installed in your workspace, you’ll have to add it to the channel you’d like to post to.&lt;/p&gt;
+&lt;h3 id=&quot;configure-the-slack-webhook-url&quot; tabindex=&quot;-1&quot;&gt;Configure the slack webhook url &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#configure-the-slack-webhook-url&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Once you’ve added the semantic-release slack app to a channel, you should be taken to a page with a webhook to post to this channel. Copy this url and add it to the &lt;code&gt;slackWebhook&lt;/code&gt; option in your configuration file.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// .releaserc.js&lt;/span&gt;&lt;br /&gt;module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;semantic-release-slack-bot&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token comment&quot;&gt;/**&lt;br /&gt;             * url to post to #my-channel&lt;br /&gt;             **/&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token literal-property property&quot;&gt;slackWebhook&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://my-webhook.com&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// replace with the copied url&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token literal-property property&quot;&gt;branchesConfig&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;configure-the-release-notes-format&quot; tabindex=&quot;-1&quot;&gt;Configure the release notes format &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#configure-the-release-notes-format&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;By default, &lt;a href=&quot;https://github.com/juliuscc/semantic-release-slack-bot/issues/44&quot;&gt;semantic-release-slack-bot does not format the default slack message with slack-friendly markdown&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To properly format the release notification, we’ll need to set &lt;code&gt;markdownReleaseNotes&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// .releaserc.js&lt;/span&gt;&lt;br /&gt;module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token string&quot;&gt;&#39;semantic-release-slack-bot&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token literal-property property&quot;&gt;markdownReleaseNotes&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;            &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion &lt;a class=&quot;direct-link&quot; href=&quot;https://developerloper.dev/personal-site/posts/en/semantic-release-slackbot/#conclusion&quot;&gt;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon icon-tabler icon-tabler-link&quot; width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; stroke-width=&quot;2&quot; stroke=&quot;currentColor&quot; fill=&quot;none&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;
+  &lt;path stroke=&quot;none&quot; d=&quot;M0 0h24v24H0z&quot; fill=&quot;none&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5&quot;&gt;&lt;/path&gt;
+  &lt;path d=&quot;M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5&quot;&gt;&lt;/path&gt;
+&lt;/svg&gt;
+
+
+&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;We did it 🎉&lt;/p&gt;
+&lt;p&gt;New releases should now trigger a post to your slack channel containing the current version and release notes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://developerloper.dev/static/images/semantic-release-slackbot/screenshot-success.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>Doing over dreaming</title>
-		<link href="https://developerloper.dev/personal-site/posts/en/first/"/>
+		<link href="https://developerloper.dev/personal-site/posts/en/doing-over-dreaming/"/>
 		<updated>2022-08-27T00:00:00Z</updated>
-		<id>https://developerloper.dev/personal-site/posts/en/first/</id>
+		<id>https://developerloper.dev/personal-site/posts/en/doing-over-dreaming/</id>
 		<content type="html">&lt;p&gt;I’ve always had a strong tendency towards perfectionism.&lt;/p&gt;
 &lt;p&gt;Regardless of the task, I love to overthink every decision, spending hours mulling over every option.&lt;/p&gt;
 &lt;p&gt;Dreaming of the greatness I know I can create, given the time and dedicated effort.&lt;/p&gt;
@@ -24,7 +121,6 @@
 &lt;p&gt;No great thing was made in a flash-bang. Greatness is made with iteration.&lt;br /&gt;
 Nothing begins flawless. Decision paralysis cannot be the enemy of progress.&lt;/p&gt;
 &lt;p&gt;Perfection is a dream. Do something tangible.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://twitter.com/developerLoper&quot;&gt;@GLo&lt;/a&gt;&lt;/p&gt;
 </content>
 	</entry>
 </feed>
