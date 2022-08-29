@@ -24,6 +24,8 @@ templateClass: tmpl-post
 
     <div role="main" class="c-content">
         {{ content | safe }}
+        <br/>
+        <a href="https://twitter.com/developerLoper">@GLo</a>
     </div>
 
     {%- set nextPost = collections.posts | getNextCollectionItem(page) %}

@@ -19,5 +19,3 @@ No great thing was made in a flash-bang. Greatness is made with iteration.
 Nothing begins flawless. Decision paralysis cannot be the enemy of progress.
 
 Perfection is a dream. Do something tangible.
-
-[@GLo](https://twitter.com/developerLoper)
